@@ -17,7 +17,8 @@ desktop.ini
 *.swo
 
 # Temporary test files and HTML dumps
-*.html
+/*.html
+!popup/popup.html
 *_files/
 scratch/
 tmp/

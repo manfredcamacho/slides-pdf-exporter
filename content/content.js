@@ -811,6 +811,36 @@
   // ==========================================
   // PDF Generation Pipeline
   // ==========================================
+  let activeLanguage = 'auto';
+
+  function tr(key, subs = []) {
+    const isEs = activeLanguage === 'es' || (activeLanguage === 'auto' && (chrome.i18n.getUILanguage() || 'en').toLowerCase().startsWith('es'));
+    const dict = isEs ? {
+      progressLoading: 'Detectando todas las diapositivas de la presentación...',
+      errorNoSlides: 'No se detectaron diapositivas en la presentación.',
+      progressCapturing: `Capturando diapositiva ${subs[0]} de ${subs[1]}${subs[2] || ''}...`,
+      progressAppendix: 'Generando apéndice con notas del presentador...',
+      progressDownloading: '¡Listo! Descargando archivo PDF...',
+      appendixTitle: 'Apéndice: Notas del Presentador',
+      appendixTotal: `Total de diapositivas con notas: ${subs[0]}`,
+      slideLabel: `Diapositiva ${subs[0]}${subs[1] || ''}:`,
+      slideNotesTitle: `Notas del Presentador — Diapositiva ${subs[0]}${subs[1] || ''}`,
+      slideHiddenTag: ' [Diapositiva Oculta]'
+    } : {
+      progressLoading: 'Detecting all presentation slides...',
+      errorNoSlides: 'No slides detected in presentation.',
+      progressCapturing: `Capturing slide ${subs[0]} of ${subs[1]}${subs[2] || ''}...`,
+      progressAppendix: 'Generating speaker notes appendix...',
+      progressDownloading: 'Done! Downloading PDF file...',
+      appendixTitle: 'Appendix: Speaker Notes',
+      appendixTotal: `Total slides with notes: ${subs[0]}`,
+      slideLabel: `Slide ${subs[0]}${subs[1] || ''}:`,
+      slideNotesTitle: `Speaker Notes — Slide ${subs[0]}${subs[1] || ''}`,
+      slideHiddenTag: ' [Hidden Slide]'
+    };
+    return dict[key] || chrome.i18n.getMessage(key, subs) || '';
+  }
+
   async function generatePDF(options = {}, onProgress) {
     const {
       resolution = '1080p',
@@ -820,8 +850,11 @@
       includeHiddenSlides = true,
       searchableText = true,
       imageFormat = 'jpeg',
-      quality = 0.95
+      quality = 0.95,
+      userLanguage = 'auto'
     } = options;
+
+    activeLanguage = userLanguage || 'auto';
 
     if (!window.jspdf || !window.jspdf.jsPDF) {
       throw new Error('Librería jsPDF no encontrada.');
@@ -833,7 +866,7 @@
     if (onProgress) {
       onProgress({
         phase: 'loading',
-        message: 'Detectando todas las diapositivas de la presentación...',
+        message: tr('progressLoading'),
         percent: 2
       });
     }
@@ -903,9 +936,8 @@
 
       if (onProgress) {
         const pct = Math.round(((i + 0.2) / totalSteps) * 90);
-        const tag = isHidden ? (chrome.i18n.getMessage('slideHiddenTag') || ' [Hidden Slide]') : '';
-        const msg = chrome.i18n.getMessage('progressCapturing', [(i + 1).toString(), totalSteps.toString(), tag]) ||
-                    `Capturing slide ${i + 1} of ${totalSteps}${tag}...`;
+        const tag = isHidden ? tr('slideHiddenTag') : '';
+        const msg = tr('progressCapturing', [(i + 1).toString(), totalSteps.toString(), tag]);
         onProgress({
           phase: 'capturing',
           message: msg,
@@ -975,16 +1007,14 @@
     // 6. Append notes appendix at the end if requested
     if (includeNotes && notesFormat === 'appendix' && collectedNotes.length > 0) {
       if (onProgress) {
-        const msg = chrome.i18n.getMessage('progressAppendix') || 'Generating speaker notes appendix...';
-        onProgress({ phase: 'appendix', message: msg, percent: 95 });
+        onProgress({ phase: 'appendix', message: tr('progressAppendix'), percent: 95 });
       }
       renderNotesAppendix(doc, dims, collectedNotes);
     }
 
     // 7. Save file
     if (onProgress) {
-      const msg = chrome.i18n.getMessage('progressDownloading') || 'Done! Downloading PDF file...';
-      onProgress({ phase: 'downloading', message: msg, percent: 100 });
+      onProgress({ phase: 'downloading', message: tr('progressDownloading'), percent: 100 });
     }
 
     const title = getPresentationTitle();
@@ -1013,9 +1043,8 @@
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(titleSize);
     doc.setTextColor(30, 41, 59);
-    const tag = isHidden ? (chrome.i18n.getMessage('slideHiddenTag') || ' [Hidden Slide]') : '';
-    const headerTitle = chrome.i18n.getMessage('slideNotesTitle', [slideNum.toString(), tag]) ||
-                        `Speaker Notes — Slide ${slideNum}${tag}`;
+    const tag = isHidden ? tr('slideHiddenTag') : '';
+    const headerTitle = tr('slideNotesTitle', [slideNum.toString(), tag]);
     doc.text(headerTitle, margin, 110);
 
     // Notes Body (Significantly larger: ~28px at 1080p, line height ~39px)
@@ -1072,16 +1101,13 @@
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(titleSize);
     doc.setTextColor(30, 41, 59);
-    const appTitle = chrome.i18n.getMessage('appendixTitle') || 'Appendix: Speaker Notes';
-    doc.text(appTitle, margin, 115);
+    doc.text(tr('appendixTitle'), margin, 115);
 
     const metaSize = Math.max(16, Math.round(dims.height * 0.021)); // ~23px at 1080p
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(metaSize);
     doc.setTextColor(100, 116, 139);
-    const appMeta = chrome.i18n.getMessage('appendixTotal', [slidesWithNotes.length.toString()]) ||
-                    `Total slides with notes: ${slidesWithNotes.length}`;
-    doc.text(appMeta, margin, 155);
+    doc.text(tr('appendixTotal', [slidesWithNotes.length.toString()]), margin, 155);
 
     let y = 220;
     const headerSize = Math.max(24, Math.round(dims.height * 0.030)); // ~32px at 1080p
@@ -1101,10 +1127,8 @@
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(headerSize);
       doc.setTextColor(234, 67, 53);
-      const tag = item.isHidden ? (chrome.i18n.getMessage('slideHiddenTag') || ' [Hidden Slide]') : '';
-      const slideLabel = chrome.i18n.getMessage('slideLabel', [item.slideNumber.toString(), tag]) ||
-                         `Slide ${item.slideNumber}${tag}:`;
-      doc.text(slideLabel, margin, y);
+      const tag = item.isHidden ? tr('slideHiddenTag') : '';
+      doc.text(tr('slideLabel', [item.slideNumber.toString(), tag]), margin, y);
       y += Math.round(headerSize * 1.35);
 
       // Note Body
