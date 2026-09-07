@@ -25,8 +25,7 @@
     "scripting"
   ],
   "host_permissions": [
-    "*://docs.google.com/presentation/*",
-    "file://*/*"
+    "*://docs.google.com/presentation/*"
   ],
   "background": {
     "service_worker": "background/service-worker.js"
@@ -34,26 +33,13 @@
   "content_scripts": [
     {
       "matches": [
-        "*://docs.google.com/presentation/*",
-        "file://*/*"
+        "*://docs.google.com/presentation/*"
       ],
       "js": [
         "libs/jspdf.umd.min.js",
         "content/content.js"
       ],
       "run_at": "document_idle"
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "libs/jspdf.umd.min.js",
-        "icons/*"
-      ],
-      "matches": [
-        "*://docs.google.com/presentation/*",
-        "file://*/*"
-      ]
     }
   ]
 }

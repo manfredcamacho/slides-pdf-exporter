@@ -107,7 +107,7 @@ When a presentation loads in your browser, Google Slides renders its graphics ve
 - **`storage`**: Saves your export preferences locally on your browser.
 - **`downloads`**: Saves the generated PDF file to your computer.
 - **`scripting`**: Injects necessary content scripts if opened on an already-loaded presentation tab.
-- **Host permissions**: Strictly scoped to `*://docs.google.com/presentation/*` and `file://*/*`. No access to your browsing history or other websites.
+- **Host permissions**: Strictly scoped to `*://docs.google.com/presentation/*`. No access to your browsing history or other websites.
 
 No personal information, presentation data, or analytics are ever collected or transmitted.
 

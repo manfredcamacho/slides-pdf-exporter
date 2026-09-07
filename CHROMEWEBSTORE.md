@@ -45,7 +45,6 @@ Export any Google Slides presentation directly to a high-fidelity PDF document, 
 | `downloads` | permissions | Required to save the generated PDF file directly into the user's Downloads folder. |
 | `scripting` | permissions | Used to inject the extraction and rendering scripts if the extension is opened on an already loaded tab. |
 | `*://docs.google.com/presentation/*` | host_permissions | Strictly limited to Google Slides presentation URLs to read rendered slide graphics and speaker notes. |
-| `file://*/*` | host_permissions | Allows users to export presentations saved locally as HTML files. |
 
 ---
 
