@@ -1,0 +1,137 @@
+{
+  "extName": {
+    "message": "Slides PDF Exporter",
+    "description": "The extension name"
+  },
+  "extDesc": {
+    "message": "Export Google Slides presentations to high-definition PDF with speaker notes and searchable text (Ctrl + F).",
+    "description": "The extension description"
+  },
+  "headerTitle": {
+    "message": "Slides PDF",
+    "description": "Popup header title"
+  },
+  "headerSubtitle": {
+    "message": "High-Definition PDF Exporter",
+    "description": "Popup header subtitle"
+  },
+  "inactiveTitle": {
+    "message": "No presentation detected",
+    "description": "Title when not on Google Slides"
+  },
+  "inactiveDesc": {
+    "message": "Open a presentation in Google Slides to export.",
+    "description": "Description when not on Google Slides"
+  },
+  "loadingTitle": {
+    "message": "Loading presentation...",
+    "description": "Title while loading presentation info"
+  },
+  "detectingSlides": {
+    "message": "📊 Detecting slides...",
+    "description": "Status badge while detecting slides"
+  },
+  "slidesCount": {
+    "message": "📊 $COUNT$ slides",
+    "description": "Slide count badge",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "notesBadgeDefault": {
+    "message": "📝 Speaker notes",
+    "description": "Badge text for speaker notes default"
+  },
+  "notesBadgeDetected": {
+    "message": "📝 Notes detected",
+    "description": "Badge text when speaker notes are detected"
+  },
+  "checkHidden": {
+    "message": "Include hidden / skipped slides",
+    "description": "Checkbox for hidden slides"
+  },
+  "checkSearchable": {
+    "message": "Selectable and searchable text (Ctrl + F)",
+    "description": "Checkbox for searchable text layer"
+  },
+  "checkNotes": {
+    "message": "Include speaker notes",
+    "description": "Checkbox for speaker notes"
+  },
+  "formatAppendix": {
+    "message": "Appendix at the end of PDF",
+    "description": "Option: Appendix format"
+  },
+  "formatCompanion": {
+    "message": "Slide followed by its notes page",
+    "description": "Option: Companion page format"
+  },
+  "btnExport": {
+    "message": "Download PDF",
+    "description": "Button to start PDF export"
+  },
+  "progressStarting": {
+    "message": "Starting PDF export...",
+    "description": "Progress message starting"
+  },
+  "progressCapturing": {
+    "message": "Capturing slide $CURRENT$ of $TOTAL$$TAG$...",
+    "description": "Progress message capturing",
+    "placeholders": {
+      "current": { "content": "$1" },
+      "total": { "content": "$2" },
+      "tag": { "content": "$3" }
+    }
+  },
+  "progressAppendix": {
+    "message": "Generating speaker notes appendix...",
+    "description": "Progress message appendix"
+  },
+  "progressDownloading": {
+    "message": "Done! Downloading PDF file...",
+    "description": "Progress message downloading"
+  },
+  "progressSuccess": {
+    "message": "PDF downloaded successfully!",
+    "description": "Progress message completed"
+  },
+  "appendixTitle": {
+    "message": "Appendix: Speaker Notes",
+    "description": "Title in PDF notes appendix"
+  },
+  "appendixTotal": {
+    "message": "Total slides with notes: $COUNT$",
+    "description": "Summary in PDF notes appendix",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "slideLabel": {
+    "message": "Slide $NUM$$TAG$:",
+    "description": "Slide label in appendix",
+    "placeholders": {
+      "num": { "content": "$1" },
+      "tag": { "content": "$2" }
+    }
+  },
+  "slideNotesTitle": {
+    "message": "Speaker Notes — Slide $NUM$$TAG$",
+    "description": "Title in PDF slide note page",
+    "placeholders": {
+      "num": {
+        "content": "$1"
+      },
+      "tag": {
+        "content": "$2"
+      }
+    }
+  },
+  "slideHiddenTag": {
+    "message": " [Hidden Slide]",
+    "description": "Tag indicating hidden slide"
+  }
+}

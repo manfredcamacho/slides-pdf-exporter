@@ -1,0 +1,137 @@
+{
+  "extName": {
+    "message": "Slides PDF Exporter",
+    "description": "The extension name"
+  },
+  "extDesc": {
+    "message": "Exporta presentaciones de Google Slides a PDF de alta definición con notas del presentador y texto buscable (Ctrl + F).",
+    "description": "The extension description"
+  },
+  "headerTitle": {
+    "message": "Slides PDF",
+    "description": "Popup header title"
+  },
+  "headerSubtitle": {
+    "message": "Exportador PDF en Alta Definición",
+    "description": "Popup header subtitle"
+  },
+  "inactiveTitle": {
+    "message": "No se detectó presentación",
+    "description": "Title when not on Google Slides"
+  },
+  "inactiveDesc": {
+    "message": "Abre una presentación en Google Slides para exportar.",
+    "description": "Description when not on Google Slides"
+  },
+  "loadingTitle": {
+    "message": "Cargando presentación...",
+    "description": "Title while loading presentation info"
+  },
+  "detectingSlides": {
+    "message": "📊 Detectando diapositivas...",
+    "description": "Status badge while detecting slides"
+  },
+  "slidesCount": {
+    "message": "📊 $COUNT$ diapositivas",
+    "description": "Slide count badge",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "notesBadgeDefault": {
+    "message": "📝 Notas del presentador",
+    "description": "Badge text for speaker notes default"
+  },
+  "notesBadgeDetected": {
+    "message": "📝 Notas detectadas",
+    "description": "Badge text when speaker notes are detected"
+  },
+  "checkHidden": {
+    "message": "Incluir diapositivas ocultas / omitidas",
+    "description": "Checkbox for hidden slides"
+  },
+  "checkSearchable": {
+    "message": "Texto seleccionable y buscable (Ctrl + F)",
+    "description": "Checkbox for searchable text layer"
+  },
+  "checkNotes": {
+    "message": "Incluir notas del presentador",
+    "description": "Checkbox for speaker notes"
+  },
+  "formatAppendix": {
+    "message": "Apéndice al final del PDF",
+    "description": "Option: Appendix format"
+  },
+  "formatCompanion": {
+    "message": "Diapositiva seguida de notas",
+    "description": "Option: Companion page format"
+  },
+  "btnExport": {
+    "message": "Descargar PDF",
+    "description": "Button to start PDF export"
+  },
+  "progressStarting": {
+    "message": "Iniciando generación de PDF...",
+    "description": "Progress message starting"
+  },
+  "progressCapturing": {
+    "message": "Capturando diapositiva $CURRENT$ de $TOTAL$$TAG$...",
+    "description": "Progress message capturing",
+    "placeholders": {
+      "current": { "content": "$1" },
+      "total": { "content": "$2" },
+      "tag": { "content": "$3" }
+    }
+  },
+  "progressAppendix": {
+    "message": "Generando apéndice con notas del presentador...",
+    "description": "Progress message appendix"
+  },
+  "progressDownloading": {
+    "message": "¡Listo! Descargando archivo PDF...",
+    "description": "Progress message downloading"
+  },
+  "progressSuccess": {
+    "message": "¡PDF descargado con éxito!",
+    "description": "Progress message completed"
+  },
+  "appendixTitle": {
+    "message": "Apéndice: Notas del Presentador",
+    "description": "Title in PDF notes appendix"
+  },
+  "appendixTotal": {
+    "message": "Total de diapositivas con notas: $COUNT$",
+    "description": "Summary in PDF notes appendix",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "slideLabel": {
+    "message": "Diapositiva $NUM$$TAG$:",
+    "description": "Slide label in appendix",
+    "placeholders": {
+      "num": { "content": "$1" },
+      "tag": { "content": "$2" }
+    }
+  },
+  "slideNotesTitle": {
+    "message": "Notas del Presentador — Diapositiva $NUM$$TAG$",
+    "description": "Title in PDF slide note page",
+    "placeholders": {
+      "num": {
+        "content": "$1"
+      },
+      "tag": {
+        "content": "$2"
+      }
+    }
+  },
+  "slideHiddenTag": {
+    "message": " [Diapositiva Oculta]",
+    "description": "Tag indicating hidden slide"
+  }
+}
